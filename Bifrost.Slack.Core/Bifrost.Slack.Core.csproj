@@ -35,9 +35,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Internal\SlackClient.cs" />
+    <Compile Include="Internal\SlackResponse.cs" />
+    <Compile Include="Internal\SlackRestClient.cs" />
     <Compile Include="ISlackClient.cs" />
+    <Compile Include="ISlackRestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Users\Internal\GetAllUsersRequest.cs" />
+    <Compile Include="Users\Internal\GetAllUsersResponse.cs" />
     <Compile Include="Users\Internal\UserService.cs" />
     <Compile Include="Users\IUserService.cs" />
     <Compile Include="Users\User.cs" />
@@ -68,8 +73,8 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PortableRest, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PortableRest.3.1.0-Beta1\lib\portable-net45+sl5+wp8+win8+wpa81+MonoTouch1+MonoAndroid1\PortableRest.dll</HintPath>
+    <Reference Include="PortableRest, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PortableRest.3.0.1\lib\portable-net45+sl5+wp8+win8+wpa81+MonoTouch1+MonoAndroid1\PortableRest.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

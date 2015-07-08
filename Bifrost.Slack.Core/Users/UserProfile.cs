@@ -73,7 +73,7 @@ namespace Bifrost.Slack.Core.Users
         /// <summary>
         /// Https URL for the user's profile image in 48px resolution.
         /// </summary>
-        [DataMember(Name = "iamge_48")]
+        [DataMember(Name = "imgge_48")]
         public string ImageSource48 { get; set; }
 
         /// <summary>

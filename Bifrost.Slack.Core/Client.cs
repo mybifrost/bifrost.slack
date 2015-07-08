@@ -12,6 +12,7 @@ namespace Bifrost.Slack.Core
     {
         public static void RegisterIoC()
         {
+            Mvx.LazyConstructAndRegisterSingleton<ISlackRestClient, Internal.SlackRestClient>();
             Mvx.LazyConstructAndRegisterSingleton<ISlackClient, Internal.SlackClient>();
             Mvx.LazyConstructAndRegisterSingleton<IUserService, Users.Internal.UserService>();
         }

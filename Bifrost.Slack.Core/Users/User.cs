@@ -109,5 +109,11 @@ namespace Bifrost.Slack.Core.Users
         /// </summary>
         [DataMember(Name = "tz_offset")]
         public long TimezoneOffset { get; set; }
+
+        /// <summary>
+        /// User's profile.
+        /// </summary>
+        [DataMember(Name = "profile")]
+        public UserProfile Profile { get; set; }
     }
 }
