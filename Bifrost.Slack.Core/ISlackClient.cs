@@ -9,6 +9,11 @@ namespace Bifrost.Slack.Core
 {
     public interface ISlackClient
     {
-        IUserService Users { get; set; }
+        /// <summary>
+        /// Token required for all API calls.
+        /// </summary>
+        string AuthenticationToken { get; set; }
+
+        IUserService Users { get; }
     }
 }

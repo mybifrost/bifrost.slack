@@ -1,3 +1,4 @@
+using Bifrost.Slack.Core;
 using Cirrious.CrossCore.IoC;
 
 namespace Bifrost.Slack.UI.Core
@@ -6,6 +7,9 @@ namespace Bifrost.Slack.UI.Core
     {
         public override void Initialize()
         {
+            // allow the client to initialize its IoC dependencies
+            Client.RegisterIoC();
+
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
