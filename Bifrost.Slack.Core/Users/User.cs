@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Bifrost.Slack.Core.Users
 {
     [DataContract]
-    public class User
+    public class User : IUserId
     {
         /// <summary>
         /// Color used to display a colored username.
@@ -115,5 +115,10 @@ namespace Bifrost.Slack.Core.Users
         /// </summary>
         [DataMember(Name = "profile")]
         public UserProfile Profile { get; set; }
+
+        public string GetUserId()
+        {
+            return Id;
+        }
     }
 }

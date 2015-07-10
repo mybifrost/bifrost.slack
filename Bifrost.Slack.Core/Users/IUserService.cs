@@ -9,5 +9,6 @@ namespace Bifrost.Slack.Core.Users
     public interface IUserService
     {
         Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<User> GetUserAsync(IUserId id);
     }
 }

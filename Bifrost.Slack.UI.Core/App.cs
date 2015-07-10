@@ -15,7 +15,7 @@ namespace Bifrost.Slack.UI.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 				
-            RegisterAppStart<ViewModels.FirstViewModel>();
+            RegisterAppStart<ViewModels.AllUsersViewModel>();
         }
     }
 }

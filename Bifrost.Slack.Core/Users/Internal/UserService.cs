@@ -24,5 +24,15 @@ namespace Bifrost.Slack.Core.Users.Internal
 
             return response.Members;
         }
+
+        public async Task<User> GetUserAsync(IUserId id)
+        {
+            var request = new GetUserRequest(id);
+            var response = await _restClient.RequestAsync<GetUserResponse>(request);
+            
+            // TODO: Should be checking response.OK to make sure it succeeded, and handle the error if it didn't
+
+            return response.User;
+        }
     }
 }
