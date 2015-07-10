@@ -3,6 +3,7 @@ using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,38 +70,86 @@ namespace Bifrost.Slack.Core.Users
         /// <summary>
         /// Https URL for the user's profile image in 24px resolution.
         /// </summary>
+        private string _imageSource24;
         [DataMember(Name = "image_24")]
-        public string ImageSource24 { get; set; }
+        public string ImageSource24
+        {
+            get { return _imageSource24; }
+            set
+            {
+                _imageSource24 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
+            }
+        }
 
         /// <summary>
         /// Https URL for the user's profile image in 32px resolution.
         /// </summary>
+        private string _imageSource32;
         [DataMember(Name = "image_32")]
-        public string ImageSourc32 { get; set; }
+        public string ImageSource32
+        {
+            get { return _imageSource32; }
+            set
+            {
+                _imageSource32 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
+            }
+        }
 
         /// <summary>
         /// Https URL for the user's profile image in 48px resolution.
         /// </summary>
-        [DataMember(Name = "imgge_48")]
-        public string ImageSource48 { get; set; }
+        private string _imageSource48;
+        [DataMember(Name = "image_48")]
+        public string ImageSource48
+        {
+            get { return _imageSource48; }
+            set
+            { 
+                _imageSource48 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value); 
+            }
+        }
 
         /// <summary>
         /// Https URL for the user's profile image in 72px resolution.
         /// </summary>
+        private string _imageSource72;
         [DataMember(Name = "image_72")]
-        public string ImageSource72 { get; set; }
+        public string ImageSource72
+        {
+            get { return _imageSource48; }
+            set
+            {
+                _imageSource72 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
+            }
+        }
 
         /// <summary>
         /// Https URL for the user's profile image in 192px resolution.
         /// </summary>
+        private string _imageSource192;
         [DataMember(Name = "image_192")]
-        public string ImageSource192 { get; set; }
+        public string ImageSource192
+        {
+            get { return _imageSource48; }
+            set
+            {
+                _imageSource192 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
+            }
+        }
 
         /// <summary>
         /// Https URL for the user's profile image in its original resolution.
         /// </summary>
+        private string _imageSource;
         [DataMember(Name = "image_original")]
-        public string ImageSource { get; set; }
+        public string ImageSource
+        {
+            get { return _imageSource48; }
+            set
+            {
+                _imageSource = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
+            }
+        }
 
         [ForeignKey(typeof(User))]
         public string UserId { get; set; }

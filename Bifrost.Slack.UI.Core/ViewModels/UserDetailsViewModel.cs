@@ -1,4 +1,5 @@
 ﻿using Bifrost.Slack.Core;
+using Bifrost.Slack.Core.Images;
 using Bifrost.Slack.Core.Users;
 using Cirrious.MvvmCross.ViewModels;
 using System;
@@ -23,9 +24,11 @@ namespace Bifrost.Slack.UI.Core.ViewModels
     {
         private User _user;
         private ISlackClient _slack;
-        public UserDetailsViewModel(ISlackClient slack)
+        private IImageCache _imageCache;
+        public UserDetailsViewModel(ISlackClient slack, IImageCache imageCache)
         {
             _slack = slack;
+            _imageCache = imageCache;
         }
 
         #region Public Methods
@@ -44,19 +47,32 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         /// Populates the view model for the given Slack User.
         /// </summary>
         /// <param name="user">User that the view model represents.</param>
-        public void Initialize(User user)
+        public async Task Initialize(User user)
         {
             _user = user;
             RealName = _user.RealName;
+            ThumbnailPath = await _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource48);
         }
         #endregion
 
         #region Properties
+        public IUserId UserId
+        {
+            get { return _user; }
+        }
+
         private string _realName;
         public string RealName
         {
             get { return _realName; }
             set { SetProperty(ref _realName, value); }
+        }
+
+        private string _thumbnailPath;
+        public string ThumbnailPath
+        {
+            get { return _thumbnailPath; }
+            set { SetProperty(ref _thumbnailPath, value); }
         }
         #endregion
 
@@ -69,7 +85,7 @@ namespace Bifrost.Slack.UI.Core.ViewModels
             var user = await _slack.Users.GetUserAsync(id);
             if (user != null)
             {
-                Initialize(user);
+                await Initialize(user);
             }
         }
     }

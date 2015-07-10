@@ -1,5 +1,6 @@
 ﻿using Bifrost.Slack.Core;
 using Bifrost.Slack.Core.Users;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,21 +34,21 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         #endregion
 
         #region Properties
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> Users
+        private ObservableCollection<UserDetailsViewModel> _users;
+        public ObservableCollection<UserDetailsViewModel> Users
         {
             get { return _users; }
             set { SetProperty(ref _users, value); }
         }
 
-        public User SelectedUser
+        public UserDetailsViewModel SelectedUser
         {
             get { return null; }
             set
             {
                 if (value != null)
                 {
-                    ShowViewModel<UserDetailsViewModel>(new UserDetailsParameters { UserId = value.Id });
+                    ShowViewModel<UserDetailsViewModel>(new UserDetailsParameters { UserId = value.UserId.GetUserId() });
                 }
             }
         }
@@ -71,14 +72,16 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         /// <param name="users">Users to be displayed.</param>
         private void Initialize(IEnumerable<User> users)
         {
-            var collection = new ObservableCollection<User>();
+            var collection = new ObservableCollection<UserDetailsViewModel>();
 
             // if Slack returned users, create viewmodels for them and add them to Users
             if (users != null)
             {
                 foreach (var user in users)
                 {
-                    collection.Add(user);
+                    var userVM = Mvx.IocConstruct<UserDetailsViewModel>();
+                    userVM.Initialize(user).ConfigureAwait(false);
+                    collection.Add(userVM);
                 }
             }
 

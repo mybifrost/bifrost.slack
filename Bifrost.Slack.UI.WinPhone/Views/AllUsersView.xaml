@@ -40,7 +40,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Source="{Binding Profile.ImageSource48}"
+                            <Image Source="{Binding ThumbnailPath}"
                                    Height="48"
                                    Margin="0 8"/>
                             
