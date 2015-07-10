@@ -40,7 +40,6 @@ namespace Bifrost.Slack.UI.Core.ViewModels
             set { SetProperty(ref _users, value); }
         }
 
-        private User _selectedUser;
         public User SelectedUser
         {
             get { return null; }
@@ -60,14 +59,24 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         /// </summary>
         private async Task LoadAsync()
         {
-            var userData = await _slack.Users.GetAllUsersAsync();
+            // Load from cache first
+            Initialize(await _slack.Users.GetAllUsersAsync());
+            // Try to fetch from the server
+            Initialize(await _slack.Users.GetAllUsersAsync(true));
+        }
 
+        /// <summary>
+        /// Populates the Users property with a list of User objects.
+        /// </summary>
+        /// <param name="users">Users to be displayed.</param>
+        private void Initialize(IEnumerable<User> users)
+        {
             var collection = new ObservableCollection<User>();
-            
+
             // if Slack returned users, create viewmodels for them and add them to Users
-            if (userData != null)
+            if (users != null)
             {
-                foreach(var user in userData)
+                foreach (var user in users)
                 {
                     collection.Add(user);
                 }

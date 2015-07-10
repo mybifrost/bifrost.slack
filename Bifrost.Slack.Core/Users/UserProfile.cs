@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -10,6 +12,12 @@ namespace Bifrost.Slack.Core.Users
     [DataContract]
     public class UserProfile
     {
+        /// <summary>
+        /// Primay key used for local cache.  Allow SQLite to auto-increment this as users are added.
+        /// </summary>
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
         /// <summary>
         /// (Optional) First name provided by the user in their profile.
         /// </summary>
@@ -93,5 +101,11 @@ namespace Bifrost.Slack.Core.Users
         /// </summary>
         [DataMember(Name = "image_original")]
         public string ImageSource { get; set; }
+
+        [ForeignKey(typeof(User))]
+        public string UserId { get; set; }
+
+        [OneToOne]
+        public User User { get; set; }
     }
 }

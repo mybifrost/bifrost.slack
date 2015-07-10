@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -42,6 +44,7 @@ namespace Bifrost.Slack.Core.Users
         /// Unique user ID.
         /// </summary>
         [DataMember(Name = "id")]
+        [PrimaryKey]
         public string Id { get; set; }
 
         /// <summary>
@@ -114,6 +117,7 @@ namespace Bifrost.Slack.Core.Users
         /// User's profile.
         /// </summary>
         [DataMember(Name = "profile")]
+        [OneToOne(CascadeOperations = CascadeOperation.All)]
         public UserProfile Profile { get; set; }
 
         public string GetUserId()

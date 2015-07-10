@@ -1,3 +1,5 @@
+using Bifrost.Slack.Core;
+using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
@@ -13,6 +15,7 @@ namespace Bifrost.Slack.UI.WinPhone
 
         protected override IMvxApplication CreateApp()
         {
+            Mvx.LazyConstructAndRegisterSingleton<ISQLite, SQLite_WinPhone>();
             return new Core.App();
         }
 		
