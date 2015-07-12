@@ -51,6 +51,7 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         {
             _user = user;
             RealName = _user.RealName;
+            Title = _user.Profile.Title;
             ThumbnailPath = await _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource48);
         }
         #endregion
@@ -66,6 +67,13 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         {
             get { return _realName; }
             set { SetProperty(ref _realName, value); }
+        }
+
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         private string _thumbnailPath;

@@ -5,4 +5,13 @@
     xmlns:local="using:Bifrost.Slack.UI.WinPhone"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <!-- TextBlock Styles -->
+        <Style x:Key="ListItemPrimaryTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ListViewItemContentTextBlockStyle}">
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+
+        <Style x:Key="ListItemSecondaryTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ListViewItemSubheaderTextBlockStyle}">
+        </Style>
+    </Application.Resources>
 </Application>

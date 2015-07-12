@@ -4,11 +4,54 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Bifrost.Slack.UI.WinPhone.Views"
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
+    xmlns:controls="using:Bifrost.Slack.UI.WinPhone.Controls"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="UserListItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Placeholder for the member's image, will be shown before the image draws on top of this -->
+                <Ellipse Height="48" Width="48"
+                         Margin="0 8"
+                         Fill="Gray"/>
+                
+                <!-- Member's image cropped to a circle -->
+                <Ellipse Height="48" Width="48"
+                                     Margin="0 8">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ThumbnailPath}"
+                                                AlignmentX="Center"
+                                                AlignmentY="Center"/>
+                    </Ellipse.Fill>
+                    <!-- Delay drawing the image to improve performance when scrolling a large list -->
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:IncrementalUpdateBehavior Phase="2"/>
+                    </Interactivity:Interaction.Behaviors>
+                </Ellipse>
+
+                <!-- Team member's real name and title -->
+                <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource ListItemPrimaryTextStyle}"
+                                           Text="{Binding RealName}"/>
+                    <TextBlock Style="{StaticResource ListItemSecondaryTextStyle}"
+                                           Text="{Binding Title}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <!-- Page content -->
     <Grid x:Name="LayoutRoot">
 
         <Grid.ChildrenTransitions>
@@ -23,35 +66,15 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="page title" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        <StackPanel>
+            <controls:PageTitle/>
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
+        <!-- List of team members -->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <ListView ItemsSource="{Binding Users}"
-                      SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Image Source="{Binding ThumbnailPath}"
-                                   Height="48"
-                                   Margin="0 8"/>
-                            
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Text="{Binding RealName}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                      SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                      ItemTemplate="{StaticResource UserListItemTemplate}"/>
         </Grid>
     </Grid>
 </views:MvxWindowsPage>
