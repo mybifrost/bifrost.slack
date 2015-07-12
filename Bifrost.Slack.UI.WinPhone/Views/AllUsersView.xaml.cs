@@ -33,6 +33,7 @@ namespace Bifrost.Slack.UI.WinPhone.Views
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
+            NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         /// <summary>
