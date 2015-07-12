@@ -72,7 +72,8 @@
             </StackPanel>
             
             <!-- Skype -->
-            <StackPanel Margin="{StaticResource ProfilePropertyMargin}">
+            <StackPanel Margin="{StaticResource ProfilePropertyMargin}"
+                        Visibility="{Binding SkypeUsername, Converter={StaticResource nullToVisibility}}">
                 <TextBlock Style="{StaticResource ProfilePropertyTitleStyle}"
                            Text="Skype"/>
                 <TextBlock Style="{StaticResource ProfilePropertyValueStyle}"
@@ -80,7 +81,8 @@
             </StackPanel>
             
             <!-- Phone number -->
-            <StackPanel Margin="{StaticResource ProfilePropertyMargin}">
+            <StackPanel Margin="{StaticResource ProfilePropertyMargin}"
+                        Visibility="{Binding SkypeUsername, Converter={StaticResource nullToVisibility}}">
                 <TextBlock Style="{StaticResource ProfilePropertyTitleStyle}"
                            Text="Phone Number"/>
                 <TextBlock Style="{StaticResource ProfilePropertyValueStyle}"

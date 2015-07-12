@@ -103,6 +103,7 @@
     <Compile Include="Controls\PageTitle.xaml.cs">
       <DependentUpon>PageTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\NativeNullToVisibilityConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />

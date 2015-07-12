@@ -3,9 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Bifrost.Slack.UI.WinPhone"
+    xmlns:converters="using:Bifrost.Slack.UI.WinPhone.Converters"
     RequestedTheme="Light">
 
     <Application.Resources>
+        <!-- Converters -->
+        <converters:NativeNullToVisibilityConverter x:Key="nullToVisibility"/>
+        
         <!-- Common Color Brushes -->
         <SolidColorBrush x:Key="FontPrimaryForeground" Color="Black"/>
         <SolidColorBrush x:Key="FontSecondaryForeground" Color="Gray"/>
