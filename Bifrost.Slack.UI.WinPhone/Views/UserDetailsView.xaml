@@ -86,7 +86,7 @@
                 <TextBlock Style="{StaticResource ProfilePropertyTitleStyle}"
                            Text="Phone Number"/>
                 <TextBlock Style="{StaticResource ProfilePropertyValueStyle}"
-                           Text="{Binding PhoneNumber}"/>
+                           Text="{Binding PhoneNumber, Converter={StaticResource stringToPhoneNumber}}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

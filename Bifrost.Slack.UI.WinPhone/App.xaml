@@ -9,6 +9,7 @@
     <Application.Resources>
         <!-- Converters -->
         <converters:NativeNullToVisibilityConverter x:Key="nullToVisibility"/>
+        <converters:NativeStringToPhoneNumberConverter x:Key="stringToPhoneNumber"/>
         
         <!-- Common Color Brushes -->
         <SolidColorBrush x:Key="FontPrimaryForeground" Color="Black"/>
