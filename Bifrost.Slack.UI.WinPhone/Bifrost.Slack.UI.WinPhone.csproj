@@ -103,6 +103,7 @@
     <Compile Include="Controls\PageTitle.xaml.cs">
       <DependentUpon>PageTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\NativeHexCodeToBrushConverter.cs" />
     <Compile Include="Converters\NativeNullToVisibilityConverter.cs" />
     <Compile Include="Converters\NativeStringToPhoneNumberConverter.cs" />
     <Compile Include="DebugTrace.cs" />

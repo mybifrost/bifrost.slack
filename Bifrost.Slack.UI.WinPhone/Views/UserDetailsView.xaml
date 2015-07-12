@@ -43,7 +43,8 @@
         <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
             <!-- Profile image, name, and title -->
             <StackPanel Orientation="Horizontal">
-                <Ellipse Width="102" Height="102">
+                <Ellipse Width="102" Height="102"
+                         Stroke="{Binding Color, Converter={StaticResource hexCodeToBrush}}" StrokeThickness="5">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding ThumbnailPath}"
                                     AlignmentX="Center"

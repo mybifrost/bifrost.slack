@@ -8,6 +8,7 @@
 
     <Application.Resources>
         <!-- Converters -->
+        <converters:NativeHexCodeToBrushConverter x:Key="hexCodeToBrush"/>
         <converters:NativeNullToVisibilityConverter x:Key="nullToVisibility"/>
         <converters:NativeStringToPhoneNumberConverter x:Key="stringToPhoneNumber"/>
         

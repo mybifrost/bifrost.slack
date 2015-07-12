@@ -55,6 +55,7 @@ namespace Bifrost.Slack.UI.Core.ViewModels
             Username = _user.Name;
             SkypeUsername = _user.Profile.SkypeUserName;
             PhoneNumber = _user.Profile.PhoneNumber;
+            Color = _user.Color;
 
             var thumbnailTask = _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource48);
             var profileImageTask = _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource192);
@@ -103,6 +104,13 @@ namespace Bifrost.Slack.UI.Core.ViewModels
         {
             get { return _phoneNumber; }
             set { SetProperty(ref _phoneNumber, value); }
+        }
+
+        private string _color;
+        public string Color
+        {
+            get { return _color; }
+            set { SetProperty(ref _color, value); }
         }
 
         private string _thumbnailPath;
