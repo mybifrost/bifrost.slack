@@ -65,10 +65,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
-        <StackPanel>
-            <controls:PageTitle/>
-        </StackPanel>
+        <!-- Branding title bar -->
+        <controls:PageTitle/>
 
         <!-- List of team members -->
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
