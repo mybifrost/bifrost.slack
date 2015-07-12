@@ -46,7 +46,7 @@
                 <Ellipse Width="102" Height="102"
                          Stroke="{Binding Color, Converter={StaticResource hexCodeToBrush}}" StrokeThickness="5">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ThumbnailPath}"
+                        <ImageBrush ImageSource="{Binding ProfileImagePath}"
                                     AlignmentX="Center"
                                     AlignmentY="Center"/>
                     </Ellipse.Fill>

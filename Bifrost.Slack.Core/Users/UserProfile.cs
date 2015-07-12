@@ -116,7 +116,7 @@ namespace Bifrost.Slack.Core.Users
         [DataMember(Name = "image_72")]
         public string ImageSource72
         {
-            get { return _imageSource48; }
+            get { return _imageSource72; }
             set
             {
                 _imageSource72 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
@@ -130,7 +130,7 @@ namespace Bifrost.Slack.Core.Users
         [DataMember(Name = "image_192")]
         public string ImageSource192
         {
-            get { return _imageSource48; }
+            get { return _imageSource192; }
             set
             {
                 _imageSource192 = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
@@ -144,7 +144,7 @@ namespace Bifrost.Slack.Core.Users
         [DataMember(Name = "image_original")]
         public string ImageSource
         {
-            get { return _imageSource48; }
+            get { return _imageSource; }
             set
             {
                 _imageSource = string.IsNullOrEmpty(value) ? value : Uri.UnescapeDataString(value);
