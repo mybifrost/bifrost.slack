@@ -4,10 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Bifrost.Slack.UI.WinPhone.Views"
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
+    xmlns:controls="using:Bifrost.Slack.UI.WinPhone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.Resources>
+        <Style x:Key="ProfileNameStyle" TargetType="TextBlock" BasedOn="{StaticResource Header1TextStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+        </Style>
+        <Style x:Key="ProfileTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource Header3TextStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="Foreground" Value="{StaticResource FontSecondaryForeground}"/>
+        </Style>
+        <Style x:Key="ProfilePropertyTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource PropertyTitleTextStyle}"/>
+        <Style x:Key="ProfilePropertyValueStyle" TargetType="TextBlock" BasedOn="{StaticResource Header3TextStyle}"/>
+        <Thickness x:Key="ProfilePropertyMargin">0 24 0 0</Thickness>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot">
 
@@ -22,15 +36,56 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="{Binding RealName}" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-        </StackPanel>
+        <!-- Branding title bar -->
+        <controls:PageTitle/>
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <Image Source="{Binding ThumbnailPath}"/>
-        </Grid>
+        <!-- User profile content -->
+        <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <!-- Profile image, name, and title -->
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="102" Height="102">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ThumbnailPath}"
+                                    AlignmentX="Center"
+                                    AlignmentY="Center"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                
+                <!-- Profile name and title -->
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center"
+                            Margin="12 0 0 0">
+                    <TextBlock Style="{StaticResource ProfileNameStyle}"
+                           Text="{Binding RealName}"/>
+                    <TextBlock Style="{StaticResource ProfileTitleStyle}"
+                               Text="{Binding Title}"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <!-- Username -->
+            <StackPanel Margin="{StaticResource ProfilePropertyMargin}">
+                <TextBlock Style="{StaticResource ProfilePropertyTitleStyle}"
+                           Text="Username"/>
+                <TextBlock Style="{StaticResource ProfilePropertyValueStyle}">
+                    <Run Text="@"/><Run Text="{Binding Username}"/>
+                </TextBlock>
+            </StackPanel>
+            
+            <!-- Skype -->
+            <StackPanel Margin="{StaticResource ProfilePropertyMargin}">
+                <TextBlock Style="{StaticResource ProfilePropertyTitleStyle}"
+                           Text="Skype"/>
+                <TextBlock Style="{StaticResource ProfilePropertyValueStyle}"
+                           Text="{Binding SkypeUsername}"/>
+            </StackPanel>
+            
+            <!-- Phone number -->
+            <StackPanel Margin="{StaticResource ProfilePropertyMargin}">
+                <TextBlock Style="{StaticResource ProfilePropertyTitleStyle}"
+                           Text="Phone Number"/>
+                <TextBlock Style="{StaticResource ProfilePropertyValueStyle}"
+                           Text="{Binding PhoneNumber}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </views:MvxWindowsPage>

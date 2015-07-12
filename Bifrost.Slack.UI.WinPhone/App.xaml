@@ -6,12 +6,43 @@
     RequestedTheme="Light">
 
     <Application.Resources>
+        <!-- Common Color Brushes -->
+        <SolidColorBrush x:Key="FontPrimaryForeground" Color="Black"/>
+        <SolidColorBrush x:Key="FontSecondaryForeground" Color="Gray"/>
+        
         <!-- TextBlock Styles -->
-        <Style x:Key="ListItemPrimaryTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ListViewItemContentTextBlockStyle}">
-            <Setter Property="FontSize" Value="22"/>
+        <Style x:Key="AppBaseTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+            <Setter Property="Foreground" Value="{StaticResource FontPrimaryForeground}"/>
         </Style>
 
-        <Style x:Key="ListItemSecondaryTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ListViewItemSubheaderTextBlockStyle}">
+        <Style x:Key="Header1TextStyle" TargetType="TextBlock" BasedOn="{StaticResource AppBaseTextBlockStyle}">
+            <Setter Property="FontSize" Value="34"/>
+        </Style>
+
+        <Style x:Key="Header2TextStyle" TargetType="TextBlock" BasedOn="{StaticResource AppBaseTextBlockStyle}">
+            <Setter Property="FontSize" Value="28"/>
+        </Style>
+
+        <Style x:Key="Header3TextStyle" TargetType="TextBlock" BasedOn="{StaticResource AppBaseTextBlockStyle}">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style x:Key="Header4TextStyle" TargetType="TextBlock" BasedOn="{StaticResource AppBaseTextBlockStyle}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="ListItemPrimaryTextStyle" TargetType="TextBlock" BasedOn="{StaticResource Header3TextStyle}">
+        </Style>
+
+        <Style x:Key="ListItemSecondaryTextStyle" TargetType="TextBlock" BasedOn="{StaticResource Header4TextStyle}">
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="Foreground" Value="{StaticResource FontSecondaryForeground}"/>
+        </Style>
+        
+        <Style x:Key="PropertyTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource Header4TextStyle}">
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Foreground" Value="{StaticResource FontSecondaryForeground}"/>
         </Style>
     </Application.Resources>
 </Application>

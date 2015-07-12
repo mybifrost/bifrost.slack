@@ -52,7 +52,15 @@ namespace Bifrost.Slack.UI.Core.ViewModels
             _user = user;
             RealName = _user.RealName;
             Title = _user.Profile.Title;
-            ThumbnailPath = await _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource48);
+            Username = _user.Name;
+            SkypeUsername = _user.Profile.SkypeUserName;
+            PhoneNumber = _user.Profile.PhoneNumber;
+
+            var thumbnailTask = _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource48);
+            var profileImageTask = _imageCache.GetCachedIamgePathAsync(user.Profile.ImageSource192);
+
+            ThumbnailPath = await thumbnailTask;
+            ProfileImagePath = await profileImageTask;
         }
         #endregion
 
@@ -76,11 +84,39 @@ namespace Bifrost.Slack.UI.Core.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
+        private string _username;
+        public string Username
+        {
+            get { return _username; }
+            set { SetProperty(ref _username, value); }
+        }
+
+        private string _skypeUsername;
+        public string SkypeUsername
+        {
+            get { return _skypeUsername; }
+            set { SetProperty(ref _skypeUsername, value); }
+        }
+
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set { SetProperty(ref _phoneNumber, value); }
+        }
+
         private string _thumbnailPath;
         public string ThumbnailPath
         {
             get { return _thumbnailPath; }
             set { SetProperty(ref _thumbnailPath, value); }
+        }
+
+        private string _profileImagePath;
+        public string ProfileImagePath
+        {
+            get { return _profileImagePath; }
+            set { SetProperty(ref _profileImagePath, value); }
         }
         #endregion
 
